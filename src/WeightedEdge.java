@@ -1,8 +1,8 @@
 public class WeightedEdge extends Edge {
     private int weight;
 
-    public WeightedEdge(Vertex destination, int weight) {
-        super(destination);
+    public WeightedEdge(Vertex origin, Vertex destination, int weight) {
+        super(origin, destination);
         this.weight = weight;
     }
 

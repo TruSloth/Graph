@@ -27,12 +27,12 @@ public class WeightedGraph implements Cloneable {
     }
 
     public void addDirectedEdge(Vertex origin, Vertex destination, int weight) {
-        adjList.get(origin).add(new WeightedEdge(destination, weight));
+        adjList.get(origin).add(new WeightedEdge(origin, destination, weight));
     }
 
     public void addUndirectedEdge(Vertex origin, Vertex destination, int weight) {
-        adjList.get(origin).add(new WeightedEdge(destination, weight));
-        adjList.get(destination).add(new WeightedEdge(origin, weight));
+        adjList.get(origin).add(new WeightedEdge(origin, destination, weight));
+        adjList.get(destination).add(new WeightedEdge(destination, origin, weight));
     }
 
     public void removeEdge(Vertex origin, Vertex destination) {
@@ -70,6 +70,21 @@ public class WeightedGraph implements Cloneable {
         }
 
         return null;
+    }
+
+    public ArrayList<WeightedEdge> getEdges() {
+        ArrayList<WeightedEdge> edgesList = new ArrayList<WeightedEdge>();
+
+        for (Vertex origin : getVertices()) {
+            for (Vertex destination : getAdjVertices(origin)) {
+                WeightedEdge edge = getEdge(origin, destination);
+                if (!edgesList.contains(edge)) {
+                    edgesList.add(edge);
+                }
+            }
+        }
+
+        return edgesList;
     }
 
     public ArrayList<Vertex> getAdjVertices(Vertex origin) {

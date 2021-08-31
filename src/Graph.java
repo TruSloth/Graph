@@ -28,12 +28,12 @@ public class Graph implements Cloneable {
     }
 
     public void addDirectedEdge(Vertex origin, Vertex destination) {
-        adjList.get(origin).add(new Edge(destination));
+        adjList.get(origin).add(new Edge(origin, destination));
     }
 
     public void addUndirectedEdge(Vertex origin, Vertex destination) {
-        adjList.get(origin).add(new Edge(destination));
-        adjList.get(destination).add(new Edge(origin));
+        adjList.get(origin).add(new Edge(origin, destination));
+        adjList.get(destination).add(new Edge(destination, origin));
     }
 
     public void removeEdge(Vertex origin, Vertex destination) {
@@ -60,6 +60,21 @@ public class Graph implements Cloneable {
         adjList.keySet().stream().forEach(vertex -> vertices.add(vertex));
 
         return vertices;
+    }
+
+    public ArrayList<Edge> getEdges() {
+        ArrayList<Edge> edgesList = new ArrayList<Edge>();
+
+        for (Vertex origin : getVertices()) {
+            for (Vertex destination : getAdjVertices(origin)) {
+                Edge edge = getEdge(origin, destination);
+                if (!edgesList.contains(edge)) {
+                    edgesList.add(edge);
+                }
+            }
+        }
+
+        return edgesList;
     }
 
     public Edge getEdge(Vertex origin, Vertex destination) {

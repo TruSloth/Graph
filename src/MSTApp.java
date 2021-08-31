@@ -1,4 +1,4 @@
-public class PrimApp {
+public class MSTApp {
     public static void main(String[] args) throws Exception {
 
         WeightedGraph g = new WeightedGraph();
@@ -34,5 +34,10 @@ public class PrimApp {
         
         Prim.findMST(g, vertexA);
         Prim.printMST();
+
+        System.out.println();
+
+        Kruskal.findMST(g);
+        Kruskal.printMST();
     }
 }

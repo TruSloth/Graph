@@ -49,7 +49,7 @@ public class Prim {
         for (Vertex vertex : graph.getVertices()) {
             Vertex origin = vertex.getPredecessor();
             if (origin != null) {
-            System.out.printf("%s -> %s (%d)\n", origin.getLabel(), vertex.getLabel(), graph.getEdge(origin, vertex).getWeight());
+                System.out.printf("%s -> %s (%d)\n", origin.getLabel(), vertex.getLabel(), graph.getEdge(origin, vertex).getWeight());
             }
         }
     }
